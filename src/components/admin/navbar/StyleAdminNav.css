@@ -1,0 +1,106 @@
+.container{
+    position: fixed;
+    width: 80px;
+    height: 100%;
+    background-color: gray;
+    border-left: 10px solid gray;
+    transition: 0.7s;
+    overflow: hidden;
+    z-index: 20;
+}
+
+.container:hover{
+    width: 300px;
+}
+
+.container ul{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.container ul li{
+    position: relative;
+    width: 100%;
+    list-style: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.container ul li:hover,
+.container ul li.hovered{
+    background: white;
+}
+
+.container ul li:nth-child(1){
+    margin-bottom: 40px;
+    pointer-events: none;
+}
+
+.container ul li a {
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: white;
+}
+
+.container ul li:hover a,
+.container ul li.hovered a{
+    color: gray;
+}
+
+.container ul li a .icon{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 75px;
+    text-align: center;
+}
+
+.container ul li a .icon ion-icon{
+    font-size: 1.75em;
+}
+
+.container ul li a .text{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;
+}
+
+/*Curvas Exteriores*/
+
+.container ul li:hover a::before,
+.container ul li.hovered a::before{
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -50px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px white;
+    pointer-events: none;
+}
+
+.container ul li:hover a::after,
+.container ul li.hovered a::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0 10px white;
+    pointer-events: none;
+}
