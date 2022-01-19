@@ -1,0 +1,9 @@
+div .navegation_default {
+    display: inline-block;
+    width: 90%;
+}
+
+div .login_default {
+    display: inline-block;
+    width: 10%;
+}

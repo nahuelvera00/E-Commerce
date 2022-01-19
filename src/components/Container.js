@@ -1,7 +1,6 @@
 import react, { Component } from "react";
 import AdminContainer from "./admin/AdminContainer";
 import UserContainer from "./user/UserContainer"
-import NotRegisterContainer from "./notuser/NotRegisterContainer"
 import styled from "styled-components";
 
 
@@ -9,7 +8,7 @@ import styled from "styled-components";
 class Container extends Component{
     render() {
 
-        const userType = 3
+        const userType = 2
 
         if(userType == 1){
             return(
@@ -18,17 +17,10 @@ class Container extends Component{
                 </Body>
             )
         }
-        if(userType == 2 || 3){
+        if(userType == 2 || userType == 3){
             return(
                 <Body>
                     <UserContainer/>
-                </Body>
-            )
-        }
-        if(userType == 3){
-            return(
-                <Body>
-                    <NotRegisterContainer/>
                 </Body>
             )
         }
