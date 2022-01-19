@@ -1,7 +1,7 @@
 import react, { Component } from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
-import Formulario from '.RegisterForm'
+import Formulario from './RegisterForm'
 
 class Register extends Component{
     render() {

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import home from "./home.css"
 import SlideShow from "./banner/SlideShow"
 import Span from './span/Span'
-import Body from './home_components/Body'
+import Body from './body/Body'
 
 
 class Home extends Component{
