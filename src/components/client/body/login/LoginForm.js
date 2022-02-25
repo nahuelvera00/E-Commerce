@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import styled from "styled-components";
 
+import auth_services from "../../../../services/auth";
+
 
 function LoginForm() {
     const formulario = useFormik({
@@ -12,7 +14,11 @@ function LoginForm() {
             username: '',
             password: '',
         },
-        onSubmit: values => console.log(values)
+        onSubmit: values => {
+            auth_services.Login(values).then(data =>{
+                console.log(data)
+            })
+        }
     })
     return (
         <Container>

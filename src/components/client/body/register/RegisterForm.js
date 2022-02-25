@@ -1,10 +1,10 @@
-import react from "react";
 import { Link } from "react-router-dom";
 
 // Formik
 import { Formik, useFormik } from "formik";
 import styled from "styled-components";
 
+import auth_services from "../../../../services/auth";
 
 const validate = (values) => {
     const errors = {}
@@ -28,27 +28,27 @@ const validate = (values) => {
             errors.password = 'La contraseña debe tener minimo 8 caracteres'
         }
 
-        //VALIDACION CONFIRMPASSWORD
-        if(!values.confirmPassword) {
-            errors.confirmPassword = 'Requerido'
-        } else if(values.confirmPassword !== values.password) {
-            errors.confirmPassword = 'Las contraseñas no coinciden'
-        }
 
     return errors
 }
 
 //ESTADOS DEL FORMULARIO
-function RegisterForm() {
+function RegisterForm(props) {
     const registerForm = useFormik({
         initialValues: {
             username: '',
             email: '',
             password: '',
-            confirmPassword: '',
         },
         validate,
-        onSubmit: values => console.log(values)
+        onSubmit: values => {
+            auth_services.Register(values).then(data=>{
+                console.log(data);
+                if(data.error === false){
+                    alert(data.message)
+                }
+            })
+        }
     })
     return (
         <Container>
@@ -92,19 +92,6 @@ function RegisterForm() {
                 />
                 {registerForm.touched.password && registerForm.errors.password ?
                  <div>{registerForm.errors.password}</div> : null}
-                <br/>
-
-                <label>Confirme la contraseña</label><br/>
-                <input 
-                name='confirmPassword'
-                type='password'
-                placeholder='Confirm password'
-                onChange={registerForm.handleChange}
-                onBlur={registerForm.handleBlur}
-                value={registerForm.values.confirmPassword}
-                />
-                {registerForm.touched.confirmPassword && registerForm.errors.confirmPassword ?
-                 <div>{registerForm.errors.confirmPassword}</div> : null}
                 <br/>
 
                 <button type="submit">Crear</button>
