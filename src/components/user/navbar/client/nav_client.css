@@ -1,9 +1,0 @@
-div .navegation_client{
-    display: inline-block;
-}
-
-div .logout_client {
-    display: inline;
-    float: right;
-    padding-right: 10px;
-}

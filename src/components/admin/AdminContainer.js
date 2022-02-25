@@ -1,14 +1,29 @@
 import react, { Component } from "react";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled from "styled-components";
-import AdminNav from "./navbar/AdminNav";
-import Main from "./main/Main"
+// components
+import AdminNavbar from "./navbar/adminNavbar";
+import TopBar from "./topbar/topBar";
+import Home from "./body/home/home";
+import Events from "./body/events/events";
+import Categories from "./body/categories/categories"
+import Publications from "./body/publications/publications"
+import Statistic from "./body/statictis/statictis"
 
-class AdminContainer extends Component{
+class AdminContainer extends Component {
     render() {
-        return(
+        return (
             <Container>
-                <AdminNav/>
-                <Main/>
+                <Router>
+                    <AdminNavbar />
+                    <TopBar />
+                    <Route exact path='/' component={Home} />
+                    <Route exact path='/admin/events' component={Events} />
+                    <Route exact path='/admin/categories' component={Categories} />
+                    <Route exact path='/admin/publications' component={Publications} />
+                    <Route exact path='/admin/statistics' component={Statistic} />
+                </Router>
+
             </Container>
         )
     }
