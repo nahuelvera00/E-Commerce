@@ -1,4 +1,4 @@
-import react, { Component } from "react";
+import eact, { Component } from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import Formulario from './RegisterForm'

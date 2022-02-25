@@ -1,5 +1,5 @@
 import react, { Component } from "react";
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import styled from "styled-components";
 // components
 import NavBar from "./navbar/navbar";
@@ -18,12 +18,12 @@ class ClientContainer extends Component {
             <Container>
                 <Router>
                     <NavBar />
-                    <Route exact path='/' component={Home} />
-                    <Route exact path='/login' component={Login} />
-                    <Route exact path='/register' component={Register} />
-                    <Route exact path='/client/cart' component={Cart} />
-                    <Route exact path='/client/records' component={Records} />
-                    <Route exact path='/client/product' component={Product} />
+                        <Route exact path='/' component={Home} />
+                        <Route exact path='/login' component={Login} />
+                        <Route exact path='/register' component={Register} />
+                        <Route exact path='/client/cart' component={Cart} />
+                        <Route exact path='/client/records' component={Records} />
+                        <Route exact path='/client/product' component={Product} />
                     <Footer />
                 </Router>
             </Container>

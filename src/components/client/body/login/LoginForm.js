@@ -1,6 +1,5 @@
-import react from "react";
-import { Link } from "react-router-dom";
-
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
 // Formik
 import { useFormik } from "formik";
 import styled from "styled-components";
@@ -8,7 +7,8 @@ import styled from "styled-components";
 import auth_services from "../../../../services/auth";
 
 
-function LoginForm() {
+export default function LoginForm() {
+    let history = useHistory();
     const formulario = useFormik({
         initialValues: {
             username: '',
@@ -16,7 +16,11 @@ function LoginForm() {
         },
         onSubmit: values => {
             auth_services.Login(values).then(data =>{
-                console.log(data)
+                if(!data.error){
+                    history.push("/")
+                }else{
+                    alert(data.error)
+                }
             })
         }
     })
@@ -70,8 +74,6 @@ const Container = styled.div`
             font-weight: 600;
         }
     }
-
-
     form {
         display: block;
         width: 100%;
@@ -108,5 +110,3 @@ const Container = styled.div`
         }
 }
 `
-
-export default LoginForm

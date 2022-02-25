@@ -1,39 +1,36 @@
-import { Link } from "react-router-dom";
-
-// Formik
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
 import { Formik, useFormik } from "formik";
 import styled from "styled-components";
 
 import auth_services from "../../../../services/auth";
 
-const validate = (values) => {
-    const errors = {}
+//ESTADOS DEL FORMULARIO
 
+export default function RegisterForm() {
+    let history = useHistory();
+
+    const validate = (values) => {
+        const errors = {}
         //VALIDACION USERNAME
-        if(!values.username) {
+        if (!values.username) {
             errors.username = 'Requerido'
-        } else if(values.username.length < 4) {
+        } else if (values.username.length < 4) {
             errors.username = 'El Nombre de usuario es muy corto'
         }
-    
         //VALIDACION EMAIL
-        if(!values.email) {
+        if (!values.email) {
             errors.email = 'Requerido'
         }
-
         //VALIDACION PASSWORD
-        if(!values.password) {
+        if (!values.password) {
             errors.password = 'Requerido'
-        } else if(values.password.length < 8) {
+        } else if (values.password.length < 8) {
             errors.password = 'La contraseña debe tener minimo 8 caracteres'
         }
+        return errors
+    }
 
-
-    return errors
-}
-
-//ESTADOS DEL FORMULARIO
-function RegisterForm(props) {
     const registerForm = useFormik({
         initialValues: {
             username: '',
@@ -42,66 +39,70 @@ function RegisterForm(props) {
         },
         validate,
         onSubmit: values => {
-            auth_services.Register(values).then(data=>{
-                console.log(data);
-                if(data.error === false){
+            auth_services.Register(values).then(data => {
+                if(!data.error){
+                    alert(data.message)
+                    history.push("/login")
+                }else{
                     alert(data.message)
                 }
             })
         }
     })
+
     return (
         <Container>
-            <h1>CREAR CUENTA</h1><br/>
+            <h1>CREAR CUENTA</h1><br />
             <form onSubmit={registerForm.handleSubmit}>
 
-                <label>Nombre de Usuario</label><br/>
-                <input 
-                name='username'
-                type='text'
-                placeholder='User name'
-                onChange={registerForm.handleChange}
-                onBlur={registerForm.handleBlur}
-                value={registerForm.values.username}
+                <label>Nombre de Usuario</label><br />
+                <input
+                    name='username'
+                    type='text'
+                    placeholder='User name'
+                    onChange={registerForm.handleChange}
+                    onBlur={registerForm.handleBlur}
+                    value={registerForm.values.username}
                 />
                 {registerForm.touched.username && registerForm.errors.username ?
-                 <div>{registerForm.errors.username}</div> : null}
-                <br/>
+                    <div>{registerForm.errors.username}</div> : null}
+                <br />
 
-                <label>Direccion de correo electronico</label><br/>
-                <input 
-                name='email'
-                type='email'
-                placeholder='Email'
-                onChange={registerForm.handleChange}
-                onBlur={registerForm.handleBlur}
-                value={registerForm.values.email}
+                <label>Direccion de correo electronico</label><br />
+                <input
+                    name='email'
+                    type='email'
+                    placeholder='Email'
+                    onChange={registerForm.handleChange}
+                    onBlur={registerForm.handleBlur}
+                    value={registerForm.values.email}
                 />
                 {registerForm.touched.email && registerForm.errors.email ?
-                 <div>{registerForm.errors.email}</div> : null}
-                <br/>
+                    <div>{registerForm.errors.email}</div> : null}
+                <br />
 
-                <label>Contraseña</label><br/>
-                <input 
-                name='password'
-                type='password'
-                placeholder='Password'
-                onChange={registerForm.handleChange}
-                onBlur={registerForm.handleBlur}
-                value={registerForm.values.password}
+                <label>Contraseña</label><br />
+                <input
+                    name='password'
+                    type='password'
+                    placeholder='Password'
+                    onChange={registerForm.handleChange}
+                    onBlur={registerForm.handleBlur}
+                    value={registerForm.values.password}
                 />
                 {registerForm.touched.password && registerForm.errors.password ?
-                 <div>{registerForm.errors.password}</div> : null}
-                <br/>
+                    <div>{registerForm.errors.password}</div> : null}
+                <br />
 
                 <button type="submit">Crear</button>
 
-            </form><br/>
+            </form><br />
             <label>
                 ¿Ya tienes cuenta? <Link to='/login'>Ingrese aqui</Link>
             </label>
-        </Container>
+        </Container >
     );
+
 }
 
 const Container = styled.div`
@@ -116,14 +117,11 @@ const Container = styled.div`
     }
 
     label {
-        
         a{
             border: none;
             font-weight: 600;
         }
     }
-
-
     form {
         display: block;
         width: 100%;
@@ -139,7 +137,6 @@ const Container = styled.div`
 
             :hover {
                 border-bottom: 1px solid green;
-                
             }
         }
 
@@ -166,5 +163,3 @@ const Container = styled.div`
         }
 }
 `
-
-export default RegisterForm

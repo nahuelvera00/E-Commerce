@@ -1,9 +1,8 @@
 import react, { Component } from "react";
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import styled from "styled-components";
 // components
 import AdminNavbar from "./navbar/adminNavbar";
-import TopBar from "./topbar/topBar";
 import Home from "./body/home/home";
 import Events from "./body/events/events";
 import Categories from "./body/categories/categories"
@@ -16,7 +15,6 @@ class AdminContainer extends Component {
             <Container>
                 <Router>
                     <AdminNavbar />
-                    <TopBar />
                     <Route exact path='/' component={Home} />
                     <Route exact path='/admin/events' component={Events} />
                     <Route exact path='/admin/categories' component={Categories} />

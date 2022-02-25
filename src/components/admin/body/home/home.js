@@ -54,7 +54,7 @@ class Home extends Component {
                         <div className="recentOrders">
                             <div className="cardHeader">
                                 <h2>Ordenes Recientes</h2>
-                                <a href="#" class="btn"> Ver todas </a>
+                                <a href="#" className="btn"> Ver todas </a>
                             </div>
                             <table>
                                 <thead>
@@ -70,13 +70,13 @@ class Home extends Component {
                                         <td>Articulo 1</td>
                                         <td>$12.000</td>
                                         <td>Abonado</td>
-                                        <td><span class="status delivered">En Camino</span></td>
+                                        <td><span className="status delivered">En Camino</span></td>
                                     </tr>
                                     <tr>
                                         <td>Articulo 1</td>
                                         <td>$12.000</td>
                                         <td>Abonado</td>
-                                        <td><span class="status delivered">En Camino</span></td>
+                                        <td><span className="status delivered">En Camino</span></td>
                                     </tr>
                                 </tbody>
                             </table>
